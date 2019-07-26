@@ -1,6 +1,11 @@
 FROM node:current-alpine
 WORKDIR /app
-COPY ./package.json .
-RUN npm install
-COPY . .
+
+# For the dev environment we can map the whole folder as a volume instead of copying the files
+# and installing dependencies on the image itself. For production, this is needed though.
+
+# COPY ./package.json .
+# RUN npm install
+# COPY . .
+
 CMD ["npm", "start"]

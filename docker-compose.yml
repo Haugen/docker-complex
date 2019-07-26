@@ -20,7 +20,6 @@ services:
       dockerfile: Dockerfile.dev
       context: ./server
     volumes:
-      - /app/node_modules
       - ./server:/app
     env_file:
       - server.env
@@ -33,7 +32,6 @@ services:
       dockerfile: Dockerfile.dev
       context: ./client
     volumes:
-      - /app/node_modules
       - ./client:/app
 
   worker:
@@ -41,7 +39,6 @@ services:
       dockerfile: Dockerfile.dev
       context: ./worker
     volumes:
-      - /app/node_modules
       - ./worker:/app
     env_file:
       - server.env
