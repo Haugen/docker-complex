@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t thaugen/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true thaugen/react-test npm run test
+
+after_success:
+  - docker build -t thaugen/complex-client ./client
+  - docker build -t thaugen/complex-nginx ./nginx
+  - docker build -t thaugen/complex-server ./server
+  - docker build -t thaugen/complex-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push thaugen/complex-client
+  - docker push thaugen/complex-nginx
+  - docker push thaugen/complex-server
+  - docker push thaugen/complex-worker
