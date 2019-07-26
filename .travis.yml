@@ -6,7 +6,7 @@ before_install:
   - docker build -t thaugen/react-test -f ./client/Dockerfile.test ./client
 
 script:
-  - docker run -e CI=true thaugen/react-test npm run test
+  - docker run -e CI=true thaugen/react-test
 
 after_success:
   - docker build -t thaugen/complex-client ./client
