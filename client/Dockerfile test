@@ -1,0 +1,11 @@
+FROM node:current-alpine
+WORKDIR /app
+
+# Adding one more Dockerfile for the client to be used for Travis CI. Here we do need to copy over
+# the package.json and install dependencies etc for the tests to run properly.
+
+COPY ./package.json .
+RUN npm install
+COPY . .
+
+CMD ["npm", "start"]

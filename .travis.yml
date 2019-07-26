@@ -3,7 +3,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t thaugen/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t thaugen/react-test -f ./client/Dockerfile.test ./client
 
 script:
   - docker run -e CI=true thaugen/react-test npm run test
